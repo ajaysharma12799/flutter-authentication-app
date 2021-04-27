@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "860574651674",
+    "project_id": "auth-firebase-fulltime-job",
+    "storage_bucket": "auth-firebase-fulltime-job.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860574651674:android:8dde88f5d1d2dff76688a3",
+        "android_client_info": {
+          "package_name": "com.example.authentication_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860574651674-ci0lhi32lbna9kcv5ih1lo1op25b0e4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLo_wTG5I5Y7VG6tYgvehUDTPz6RNaRnY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860574651674-ci0lhi32lbna9kcv5ih1lo1op25b0e4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
