@@ -12,25 +12,21 @@ Dependency Used :
 <img 
     src="Screenshots/SplashScreen.png"
     alt="Splash Screen"
-    style="width: 150px"
-    float="left"
+    style="width: 50px"
 />
 <img 
     src="Screenshots/LoginPage.png"
     alt="Login Page"
-    style="width: 150px"
-    float="left"
+    style="width: 50px"
 />
 <br>
 <img 
     src="Screenshots/SignupPage.png"
     alt="Signup Page"
-    style="width: 150px"
-    float="left"
+    style="width: 50px"
 />
 <img 
     src="Screenshots/HomePage.png"
     alt="HomePage"
-    style="width: 150px"
-    float="left"
+    style="width: 50px"
 />
