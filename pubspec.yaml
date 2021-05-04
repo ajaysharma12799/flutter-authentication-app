@@ -31,6 +31,8 @@ dependencies:
   firebase_auth: ^1.1.1
   cached_network_image: ^3.0.0
   flutter_svg: ^0.22.0
+  google_sign_in: "^4.5.1"
+  flutter_signin_button: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -65,11 +67,11 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: Quicksand
-       fonts:
-         - asset: assets/fonts/Quicksand-Light.ttf
-         - asset: assets/fonts/Quicksand-Regular.ttf
-         - asset: assets/fonts/Quicksand-Medium.ttf
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand-Light.ttf
+        - asset: assets/fonts/Quicksand-Regular.ttf
+        - asset: assets/fonts/Quicksand-Medium.ttf
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
