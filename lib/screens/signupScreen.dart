@@ -102,24 +102,35 @@ class _SignupState extends State<Signup> {
                 ),
                 Container(
                   width: (MediaQuery.of(context).size.width as double) / 1.1,
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(40.0),
+                  ),
                   child: TextFormField(
                     controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
                     validator: (String value) {
                       if (value.isEmpty) {
                         return "Please Enter Email";
                       }
                     },
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 20,
+                      fontWeight: FontWeight.bold,
                       fontFamily: "Quicksand",
                     ),
                     decoration: InputDecoration(
-                      labelText: "E-Mail",
-                      labelStyle: TextStyle(
-                        color: Colors.white,
+                      border: InputBorder.none,
+                      hintText: "Email",
+                      hintStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(255, 63, 111, 1),
                       ),
-                      border: OutlineInputBorder(),
+                      icon: Icon(
+                        Icons.email,
+                        color: Color.fromRGBO(255, 63, 111, 1),
+                      ),
                     ),
                   ),
                 ),
@@ -128,6 +139,11 @@ class _SignupState extends State<Signup> {
                 ),
                 Container(
                   width: (MediaQuery.of(context).size.width as double) / 1.1,
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(40.0),
+                  ),
                   child: TextFormField(
                     controller: passwordController,
                     validator: (String value) {
@@ -140,16 +156,21 @@ class _SignupState extends State<Signup> {
                     },
                     obscureText: true,
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 20,
+                      fontWeight: FontWeight.bold,
                       fontFamily: "Quicksand",
                     ),
                     decoration: InputDecoration(
-                      labelText: "Password",
-                      labelStyle: TextStyle(
-                        color: Colors.white,
+                      border: InputBorder.none,
+                      hintText: "Password",
+                      hintStyle: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(255, 63, 111, 1),
                       ),
-                      border: OutlineInputBorder(),
+                      icon: Icon(
+                        Icons.lock,
+                        color: Color.fromRGBO(255, 63, 111, 1),
+                      ),
                     ),
                   ),
                 ),

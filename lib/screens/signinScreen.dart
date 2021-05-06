@@ -122,6 +122,7 @@ class _SigninState extends State<Signin> {
                     },
                     style: TextStyle(
                       fontSize: 20,
+                      fontWeight: FontWeight.bold,
                       fontFamily: "Quicksand",
                     ),
                     decoration: InputDecoration(
@@ -158,9 +159,10 @@ class _SigninState extends State<Signin> {
                         return "Password Should be Above 6 Character";
                       }
                     },
+                    obscureText: true,
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 20,
+                      fontWeight: FontWeight.bold,
                       fontFamily: "Quicksand",
                     ),
                     decoration: InputDecoration(
