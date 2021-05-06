@@ -32,6 +32,7 @@ class _SignupState extends State<Signup> {
 
     if (_key.currentState.validate()) {
       // Checking if Form_Key Current State is Validated
+      _key.currentState.save();
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
@@ -82,16 +83,6 @@ class _SignupState extends State<Signup> {
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    /* 
-      Cleaning Some Components when user Background or Close Our App
-    */
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
   }
 
   @override
