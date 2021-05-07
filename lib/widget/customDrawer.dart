@@ -1,5 +1,7 @@
+import 'package:authentication_app/Auth/GoogleSignHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class CustomDrawer extends StatefulWidget {
   @override
@@ -14,18 +16,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
   }
 
   User user;
+  GoogleSignIn _googleSignIn = GoogleSignIn();
+  GoogleSignInProvider _googleSignInProvider = GoogleSignInProvider();
+  String displayEmail;
 
   void signoutHelper(BuildContext context) async {
-    print(FirebaseAuth.instance.currentUser);
     await FirebaseAuth.instance.signOut();
     navigateToLogin(context);
   }
 
   loadCurrentUser() async {
     User currentUser = await _getCurrentUser();
-    // print(currentUser);
     setState(() {
       this.user = currentUser;
+      displayEmail = this.user.email;
     });
   }
 
@@ -40,7 +44,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   }
 
   String initialName() {
-    String nameInitial = user.email.substring(0, 1).toUpperCase();
+    String nameInitial = displayEmail.substring(0, 1).toUpperCase();
     return nameInitial;
   }
 
@@ -50,7 +54,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: ListView(
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountEmail: Text(user.email),
+            accountEmail: Text(displayEmail),
             currentAccountPicture: CircleAvatar(
               child: Text(initialName()),
             ),
@@ -60,6 +64,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             title: Text("Logout"),
             onTap: () {
               signoutHelper(context);
+              _googleSignInProvider.logout();
             },
           ),
         ],
