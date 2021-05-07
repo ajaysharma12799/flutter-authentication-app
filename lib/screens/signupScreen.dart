@@ -1,3 +1,4 @@
+import 'package:authentication_app/Auth/GoogleSignHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -17,14 +18,13 @@ class _SignupState extends State<Signup> {
 
   // Method to Navigate to HomeScreen
   void navigateToHomeScreen(BuildContext context) {
-    Navigator.of(context).pop();
     Navigator.popAndPushNamed(context, "/HomeScreen");
   }
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
-  User _user;
+  GoogleSignInProvider _googleSignInProvider = GoogleSignInProvider();
 
   void signupHandler() async {
     String email = emailController.text;
@@ -36,9 +36,7 @@ class _SignupState extends State<Signup> {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
-        this._user =
-            userCredential.user; // Storing Registered User into Global User
-        // Showing DialogBoc
+        // Showing DialogBox
         showDialogBox("Account Created Successfully", false);
       } on FirebaseAuthException catch (error) {
         if (error.code == 'weak-password') {
@@ -51,6 +49,14 @@ class _SignupState extends State<Signup> {
         print(error);
       }
     }
+  }
+
+  void checkAuth() async {
+    await FirebaseAuth.instance.authStateChanges().listen((User user) {
+      if (user != null) {
+        navigateToHomeScreen(context);
+      }
+    });
   }
 
   showDialogBox(String message, bool flag) {
@@ -73,7 +79,7 @@ class _SignupState extends State<Signup> {
                   content: Text(message),
                   actions: <Widget>[
                       TextButton(
-                        onPressed: () => navigateToHomeScreen(context),
+                        onPressed: () => Navigator.of(context).pop(),
                         child: Text("Ok"),
                       )
                     ]);
@@ -83,6 +89,12 @@ class _SignupState extends State<Signup> {
   @override
   void initState() {
     super.initState();
+    this.checkAuth();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -241,7 +253,7 @@ class _SignupState extends State<Signup> {
                   child: SignInButton(
                     Buttons.Google,
                     text: "Sign up With Google",
-                    onPressed: () {},
+                    onPressed: () => _googleSignInProvider.login(),
                   ),
                 ),
                 Row(
