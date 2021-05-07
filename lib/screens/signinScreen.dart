@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:authentication_app/Auth/GoogleSignHelper.dart';
 
 class Signin extends StatefulWidget {
   @override
@@ -23,7 +25,7 @@ class _SigninState extends State<Signin> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
-  User _user;
+  GoogleSignIn _googleSignIn = GoogleSignIn();
 
   void signinHelper() async {
     String email = emailController.text;
@@ -33,7 +35,6 @@ class _SigninState extends State<Signin> {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
-        this._user = userCredential.user;
         // Redirect Verified User to HomeScreen
         navigateToHomeScreen(context);
         // Showing DialogBox
@@ -55,6 +56,15 @@ class _SigninState extends State<Signin> {
         navigateToHomeScreen(context);
       }
     });
+  }
+
+  // Method to Check if Google User is SignedIn
+  void checkGoogleSignIn() async {
+    bool isGoogleUserSignedIn = await _googleSignIn.isSignedIn();
+    if (isGoogleUserSignedIn) {
+      // If User is SignedIn, then Navigate To HomeScreen
+      navigateToHomeScreen(context);
+    }
   }
 
   showDialogBox(String message, bool flag) {
@@ -88,6 +98,7 @@ class _SigninState extends State<Signin> {
   void initState() {
     super.initState();
     this.checkAuth();
+    this.checkGoogleSignIn();
   }
 
   @override
@@ -246,7 +257,7 @@ class _SigninState extends State<Signin> {
                   child: SignInButton(
                     Buttons.Google,
                     text: "Login With Google",
-                    onPressed: () {},
+                    onPressed: signInWithGoogle,
                   ),
                 ),
                 Row(
